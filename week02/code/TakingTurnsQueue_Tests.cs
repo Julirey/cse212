@@ -90,7 +90,7 @@ public class TakingTurnsQueueTests
     // Expected Result: Bob, Tim, Sue, Bob, Tim, Sue, Tim, Sue, Tim, Tim
     // Defect(s) Found: Assert.AreEqual failed. Expected:<Bob>. Actual:<Sue>.
     // GetNextPerson function didn't check for people with 0 or less turns so that 
-    // they could beenqueued infinitely.
+    // they could be enqueued infinitely.
     public void TestTakingTurnsQueue_ForeverZero()
     {
         var timTurns = 0;
@@ -123,7 +123,7 @@ public class TakingTurnsQueueTests
     // Expected Result: Tim, Sue, Tim, Sue, Tim, Sue, Tim, Tim, Tim, Tim
     // Defect(s) Found: Assert.AreEqual failed. Expected:<Tim>. Actual:<Sue>.
     // GetNextPerson function didn't check for people with 0 or less turns so that 
-    // they could beenqueued infinitely.
+    // they could be enqueued infinitely.
 
     public void TestTakingTurnsQueue_ForeverNegative()
     {
