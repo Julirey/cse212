@@ -22,7 +22,32 @@ public static class SetsAndMaps
     public static string[] FindPairs(string[] words)
     {
         // TODO Problem 1 - ADD YOUR CODE HERE
-        return [];
+
+        // Convert words array to HashSet
+        var wordSet = new HashSet<string>(words);
+        var result = new List<string>();
+
+        // Go through each item
+        foreach (var word in words)
+        {
+            // Skip the item if it is not in the HashSet or if its two characters repeated
+            if (!wordSet.Contains(word) || word[0] == word[1])
+                continue;
+
+            // Reverse the characters
+            var reversed = $"{word[1]}{word[0]}";
+
+            // If the reversed item is also in the HashSet, 
+            // Add it to results list and remove both pairs from HashSet.  
+            if (wordSet.Contains(reversed))
+            {
+                result.Add($"{word} & {reversed}");
+                wordSet.Remove(word);
+                wordSet.Remove(reversed);
+            }
+        }
+
+        return result.ToArray();
     }
 
     /// <summary>
@@ -43,6 +68,17 @@ public static class SetsAndMaps
         {
             var fields = line.Split(",");
             // TODO Problem 2 - ADD YOUR CODE HERE
+
+            string degree = fields[3];
+
+            if (degrees.ContainsKey(degree))
+            {
+                degrees[degree] += 1;
+            }
+            else
+            {
+                degrees[degree] = 1;
+            }
         }
 
         return degrees;
@@ -67,7 +103,46 @@ public static class SetsAndMaps
     public static bool IsAnagram(string word1, string word2)
     {
         // TODO Problem 3 - ADD YOUR CODE HERE
-        return false;
+
+        // Remove spaces and make both words lowercase
+        word1 = word1.Replace(" ", "").ToLower();
+        word2 = word2.Replace(" ", "").ToLower();
+
+        // If the word length doesnt match they are not anagrams
+        if (word1.Length != word2.Length)
+            return false;
+
+        // Declare dictionary for character list
+        var charCount = new Dictionary<char, int>();
+
+        // Check every character in the first word and compare it to the dictionary
+        foreach (var character in word1)
+        {
+            // If it's present, add 1 to the value  
+            if (charCount.ContainsKey(character))
+                charCount[character]++;
+
+            // Else, add it to the dictionary with a value of 1 
+            else
+                charCount[character] = 1;
+        }
+
+        // Check every character in the second word and compare it to the dictionary
+        foreach (var character in word2)
+        {
+            // If the character is NOT present, or the value of the character is less or equal to 0
+            // The words are not anagrams
+            if (!charCount.ContainsKey(character) || charCount[character] <= 0)
+                return false;
+
+            // Else, remove one count from the value of the respective key,value pair
+            else
+                charCount[character]--;
+        }
+
+        // Assumming both for loops complete without early exits
+        // The words are anagrams, return TRUE
+        return true;
     }
 
     /// <summary>
@@ -101,6 +176,17 @@ public static class SetsAndMaps
         // on those classes so that the call to Deserialize above works properly.
         // 2. Add code below to create a string out each place a earthquake has happened today and its magitude.
         // 3. Return an array of these string descriptions.
-        return [];
+
+        // Set size of array to number of results
+        string[] result = new string[featureCollection.features.Count];
+
+        // Iterate through each result and assign their values to the results array.
+        for (int i = 0; i < featureCollection.features.Count; i++)
+        {
+            FeatureProperties properties = featureCollection.features[i].properties;
+            result[i] = $"{properties.place} - Mag ${properties.mag}";
+        }
+
+        return result;
     }
 }
