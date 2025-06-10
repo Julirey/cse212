@@ -31,7 +31,8 @@ public class LinkedList : IEnumerable<int>
     /// Insert a new node at the back (i.e. the tail) of the linked list.
     /// </summary>
     public void InsertTail(int value)
-    {
+    {   
+        // Problem 1
         // Create new node
         Node newNode = new(value);
         // If the list is empty, then point both head and tail to the new node.
@@ -77,8 +78,9 @@ public class LinkedList : IEnumerable<int>
     /// Remove the last node (i.e. the tail) of the linked list.
     /// </summary>
     public void RemoveTail()
-    {
-         // If the list has only one item in it, then set head and tail 
+    {   
+        // Problem 2
+        // If the list has only one item in it, then set head and tail 
         // to null resulting in an empty list.  This condition will also
         // cover an empty list.  Its okay to set to null again.
         if (_head == _tail)
@@ -136,6 +138,7 @@ public class LinkedList : IEnumerable<int>
     /// </summary>
     public void Remove(int value)
     {   
+        // Problem 3
         // Search for the node that matches 'value' by starting at the 
         // head of the list.
         Node? curr = _head;
@@ -176,7 +179,7 @@ public class LinkedList : IEnumerable<int>
     /// </summary>
     public void Replace(int oldValue, int newValue)
     {
-        // TODO Problem 4
+        // Problem 4
         // Search for the node that matches 'value' by starting at the 
         // head of the list.
         Node? curr = _head;
@@ -219,7 +222,7 @@ public class LinkedList : IEnumerable<int>
     /// </summary>
     public IEnumerable Reverse()
     {
-        // TODO Problem 5
+        // Problem 5
         var curr = _tail;
         while (curr is not null)
         {

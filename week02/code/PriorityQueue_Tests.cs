@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-// TODO Problem 2 - Write and run test cases and fix the code to match requirements.
+// Problem 2 - Write and run test cases and fix the code to match requirements.
 
 [TestClass]
 public class PriorityQueueTests
